@@ -1,5 +1,7 @@
 # tree-sitter-markdown
 
+> **Fork of [tree-sitter-md](https://crates.io/crates/tree-sitter-md) made compatible with the tree-sitter v0.25.x series.**
+
 [![CI][ci]](https://github.com/tree-sitter-grammars/tree-sitter-markdown/actions)
 [![discord][discord]](https://discord.gg/w7nTvsVJhm)
 [![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
