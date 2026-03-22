@@ -2,7 +2,7 @@ use core::num::NonZeroU16;
 use std::collections::HashMap;
 
 use tree_sitter::{
-    InputEdit, Language, Node, ParseOptions, Parser, Point, Range, Tree, TreeCursor,
+    InputEdit, Language, Node, ParseOptions, ParseState, Parser, Point, Range, Tree, TreeCursor,
 };
 
 use crate::{INLINE_LANGUAGE, LANGUAGE};
@@ -308,19 +308,19 @@ impl MarkdownTree {
 /// This abstracts away the double block / inline structure of [`MarkdownParser`].
 #[derive(Default)]
 pub struct MarkdownParseOptions<'a> {
-    block_options: Option<ParseOptions<'a>>,
-    inline_options: Option<ParseOptions<'a>>,
+    block_callback: Option<&'a mut dyn FnMut(&ParseState) -> bool>,
+    inline_callback: Option<&'a mut dyn FnMut(&ParseState) -> bool>,
 }
 
 impl<'a> MarkdownParseOptions<'a> {
     /// Creates a new [MarkdownParseOptions] instance.
     pub fn new(
-        block_options: Option<ParseOptions<'a>>,
-        inline_options: Option<ParseOptions<'a>>,
+        block_callback: Option<&'a mut dyn FnMut(&ParseState) -> bool>,
+        inline_callback: Option<&'a mut dyn FnMut(&ParseState) -> bool>,
     ) -> Self {
         MarkdownParseOptions {
-            block_options,
-            inline_options,
+            block_callback,
+            inline_callback,
         }
     }
 }
@@ -373,7 +373,9 @@ impl MarkdownParser {
         let block_tree = parser.parse_with_options(
             callback,
             old_tree.map(|tree| &tree.block_tree),
-            options.block_options.as_mut().map(|b_opt| b_opt.reborrow()),
+            options.block_callback.take().map(|cb| ParseOptions {
+                progress_callback: Some(cb),
+            }),
         )?;
         let (mut inline_trees, mut inline_indices) = if let Some(old_tree) = old_tree {
             let len = old_tree.inline_trees.len();
@@ -427,10 +429,9 @@ impl MarkdownParser {
             let inline_tree = parser.parse_with_options(
                 callback,
                 old_tree.and_then(|old_tree| old_tree.inline_trees.get(i)),
-                options
-                    .inline_options
-                    .as_mut()
-                    .map(|b_opt| b_opt.reborrow()),
+                options.inline_callback.as_mut().map(|cb| ParseOptions {
+                    progress_callback: Some(&mut **cb),
+                }),
             )?;
             inline_trees.push(inline_tree);
             inline_indices.insert(node.id(), i);
