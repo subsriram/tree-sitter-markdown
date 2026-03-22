@@ -1,13 +1,13 @@
 [package]
 name = "tree-sitter-md-025"
 description = "Markdown grammar for tree-sitter"
-version = "0.5.4"
+version = "0.5.5"
 authors = ["MDeiml"]
 license = "MIT"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "markdown"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+repository = "https://github.com/subsriram/tree-sitter-markdown"
 edition = "2021"
 autoexamples = false
 

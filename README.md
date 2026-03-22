@@ -4,7 +4,7 @@
 [![discord][discord]](https://discord.gg/w7nTvsVJhm)
 [![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
 [![npm][npm]](https://www.npmjs.com/package/@tree-sitter-grammars/tree-sitter-markdown)
-[![crates][crates]](https://crates.io/crates/tree-sitter-md)
+[![crates][crates]](https://crates.io/crates/tree-sitter-md-025)
 [![pypi][pypi]](https://pypi.org/project/tree-sitter-markdown/)
 
 A Markdown parser for [tree-sitter].
