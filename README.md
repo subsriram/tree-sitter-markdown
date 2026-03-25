@@ -1,6 +1,6 @@
 # tree-sitter-markdown
 
-> **Fork of [tree-sitter-md](https://crates.io/crates/tree-sitter-md) made compatible with the tree-sitter v0.25.x series.**
+> **Fork of [tree-sitter-md](https://crates.io/crates/tree-sitter-md) made compatible with the tree-sitter v0.25.x series. Available on crates.io as [tree-sitter-md-025].**
 
 [![CI][ci]](https://github.com/tree-sitter-grammars/tree-sitter-markdown/actions)
 [![discord][discord]](https://discord.gg/w7nTvsVJhm)
@@ -81,4 +81,5 @@ Unfortunately using this parser with WASM/web-tree-sitter does not work out of t
 [matrix]: https://img.shields.io/matrix/tree-sitter-chat%3Amatrix.org?logo=matrix&label=matrix
 [npm]: https://img.shields.io/npm/v/%40tree-sitter-grammars%2Ftree-sitter-markdown?logo=npm
 [crates]: https://img.shields.io/crates/v/tree-sitter-md-025?logo=rust
+[tree-sitter-md-025]: https://crates.io/crates/tree-sitter-md-025
 [pypi]: https://img.shields.io/pypi/v/tree-sitter-markdown?logo=pypi&logoColor=ffd242
